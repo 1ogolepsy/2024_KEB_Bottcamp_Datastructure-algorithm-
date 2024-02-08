@@ -1,17 +1,37 @@
-import random
 
-note = random.randint(1, 100)
-count = 1
-while True:
-    n = int(input("숫자를 입력하세요."))
-    if note < n:
-        print("틀렸습니다! down")
-    elif note > n:
-        print("틀렸습니다! up")
-    elif note == n:
-        print(f"정답입니다. 총 {count}회 만에 맞추셨습니다.")
-        break
-    else:
-        print("잘못된 값을 입력했습니다. 다시!!")
+def print_poly(f_x) -> str:
+    term = len(f_x) - 1
+    poly_expression = "f(x) = "
 
-    count += 1
+    for i in range(len(fx)):
+        coefficient = f_x[i]
+
+        if coefficient >= 0:
+            poly_expression += "+"
+        poly_expression = poly_expression + f"{coefficient}x^{term} "
+        term -= 1
+
+    return poly_expression
+
+
+def calculation_Poly(x_value, f_x):
+    return_Value = 0
+    term = len(f_x) - 1
+
+    for i in range(len(fx)):
+        coefficient = f_x[i]
+        return_Value += coefficient * pow(x_value, term)
+        term  = term - 1
+
+    return return_Value
+
+
+
+fx = [3, 4, 0, -9]
+
+if __name__ == "__main__":
+    print(print_poly(fx))
+
+    print(calculation_Poly(int(input("X 값-->")), fx))
+
+
