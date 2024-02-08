@@ -1,44 +1,69 @@
 
-def print_poly(f_x) -> str:
-    term = len(f_x) - 1
-    poly_expression = "f(x) = "
+class Node:
+    def __init__ (self):
+        self.data = None
+        self.link = None
 
-    for i in range(len(fx)):
-        coefficient = f_x[i]
+def print_nodes(start) :
+    current = start
+    if current == None :
+        return
+    print(current.data, end = ' ')
+    while current.link != None:
+        current = current.link
+        print(current.data, end = ' ')
+    print()
 
-        if coefficient > 0 and i != 0:
-            poly_expression += "+"
-        elif coefficient == 0:
-            term -= 1
-            continue
+def insert_node(find_data, insert_data):
+    global memory, head, current, pre
 
-        if term == 0:
-            poly_expression = poly_expression + f"{coefficient}"
-        else:
-            poly_expression = poly_expression + f"{coefficient}x^{term} "
-        term -= 1
+    if head.data == find_data:
+        node = Node()
+        node.data = insert_data
+        node.link = head
+        head = node
+        return
 
-    return poly_expression
+    current = head
+    while current.link is not None:
+        pre = current
+        current = current.link
+        if current.data == find_data:
+            node = Node()
+            node.data = insert_data
+            node.link = current
+            pre.link = node
+            return
 
-
-def calculation_Poly(x_value, f_x):
-    return_Value = 0
-    term = len(f_x) - 1
-
-    for i in range(len(fx)):
-        coefficient = f_x[i]
-        return_Value += coefficient * pow(x_value, term)
-        term  = term - 1
-
-    return return_Value
-
+    node = Node()
+    node.data = insert_data
+    current.link = node
 
 
-fx = [3, 4, 0, -9]
+memory = []
+head, current, pre = None, None, None
+dataArray = ["다현", "정연", "쯔위", "사나", "지효"]
 
 if __name__ == "__main__":
-    print(print_poly(fx))
 
-    print(calculation_Poly(int(input("X 값-->")), fx))
+    node = Node()
+    node.data = dataArray[0]
+    head = node
+    memory.append(node)
 
+    for data in dataArray[1:]:
+        pre = node
+        node = Node()
+        node.data = data
+        pre.link = node
+        memory.append(node)
+
+    print_nodes(head)
+
+    insert_node("다현", "화사")
+    print_nodes(head)
+    insert_node("사나", "솔라")
+    print_nodes(head)
+    insert_node("동균", "문별")
+    print_nodes(head)
 
