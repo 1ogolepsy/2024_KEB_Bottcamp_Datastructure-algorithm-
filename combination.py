@@ -5,8 +5,9 @@ def factorial(n):
     else:
         return 1
 
+
 def combination(n, r):
-    return factorial(n) / (factorial(n-r)*factorial(r))
+    return int(factorial(n) / (factorial(n-r)*factorial(r)))
 
 
 
