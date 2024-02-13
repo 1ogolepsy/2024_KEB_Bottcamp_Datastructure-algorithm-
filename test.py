@@ -2,11 +2,15 @@ def out():
     a = 10
     b = 100
 
-    def inner():
-        test = a*b
+    def inner(*val):
+        test = val*b
+        print(test)
+        val = 100
+        test = val*b
         print(test)
         return
-    inner()
+    inner(a)
+    print(a)
     return
 
 out()
