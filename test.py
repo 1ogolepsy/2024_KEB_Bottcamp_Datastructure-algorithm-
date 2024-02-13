@@ -1,11 +1,12 @@
-## 간접참조
+def out():
+    a = 10
+    b = 100
 
-a = '원본'
+    def inner():
+        test = a*b
+        print(test)
+        return
+    inner()
+    return
 
-b = a
-print(b)
-print(a)
-
-a = '수정'
-print(b)
-print(a)
+out()
