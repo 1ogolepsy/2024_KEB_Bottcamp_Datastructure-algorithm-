@@ -1,16 +1,6 @@
-def out():
-    a = 10
-    b = 100
+table = {')': '(', ']': '[', '}': '{', '>': '<'}
 
-    def inner(*val):
-        test = val*b
-        print(test)
-        val = 100
-        test = val*b
-        print(test)
-        return
-    inner(a)
-    print(a)
-    return
-
-out()
+a = ')'
+b = '('
+print(a in table)
+print(b in table)
