@@ -1,69 +1,49 @@
-class Treenode() :
+## 함수 선언 부분 ##
+class Treenode:
     def __init__ (self) :
         self.left = None
         self.data = None
         self.right = None
 
-node1 = Treenode()
-node1.data = '화사'
+root = None
+name_ary = ['블랙핑크', '레드벨벳', '마마무', '에이핑크', '걸스데이', '트와이스', '잇지', '여자친구']
 
-node2 = Treenode()
-node2.data = '솔라'
-node1.left = node2
+node = Treenode()
+node.data = name_ary[0]
+root = node
 
-node3 = Treenode()
-node3.data = '문별'
-node1.right = node3
+for name in name_ary[1:]:
 
-node4 = Treenode()
-node4.data = '휘인'
-node2.left = node4
+    node = Treenode()
+    node.data = name
 
-node5 = Treenode()
-node5.data = '쯔위'
-node2.right = node5
+    current = root
+    while True:
+        if name < current.data:
+            if current.left is None:
+                current.left = node
+                break
+            current = current.left
+        else :
+            if current.right is None:
+                current.right = node
+                break
+            current = current.right
 
-node6 = Treenode()
-node6.data = '선미'
-node3.left = node6
+find_name = input("찾을 아이돌 그룹이름 입력: ")
 
-node9 = Treenode()
-node9.data = '다현'
-node4.right = node9
-
-node13 = Treenode()
-node13.data = '사나'
-node6.right = node13
-
-def preorder(node) :
-    if node == None:
-        return
-    print(node.data, end='->')
-    preorder(node.left)
-    preorder(node.right)
-
-def inorder(node):
-    if node == None :
-        return
-    inorder(node.left)
-    print(node.data, end='->')
-    inorder(node.right)
-
-def postorder(node):
-    if node == None :
-        return
-    postorder(node.left)
-    postorder(node.right)
-    print(node.data, end='->')
-
-print('전위 순회 : ', end = '')
-preorder(node1)
-print('끝')
-
-print('중위 순회 : ', end = '')
-inorder(node1)
-print('끝')
-
-print('후위 순회 : ', end = '')
-postorder(node1)
-print('끝')
+current = root
+while True:
+    if find_name == current.data:
+        print(find_name, '을(를) 찾음.')
+        break
+    elif find_name < current.data :
+        if current.left is None :
+            print(find_name, '이(가) 트리에 없음')
+            break
+        current = current.left
+    else :
+        if current.right is None :
+            print(find_name, '이(가) 트리에 없음')
+            break
+        current = current.right
