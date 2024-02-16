@@ -1,13 +1,4 @@
-def test(a):
-    if a == 1:
-        return None
-    elif a == 0:
-        return 0
+a = [1, 2, 3]
+b = [1, 2, 3]
 
-a = 1
-
-print(test(a) is not None)
-
-a = 0
-
-print(test(a) is not None)
+print(a*b)
