@@ -1,18 +1,34 @@
-def fibonacci(n):
-    global count, fibonacci_arr
-    count += 1
+from collections import deque
+graph = [
+	[0, 1, 1, 0, 0, 0, 0, 0],
+	[1, 0, 0, 1, 0, 0, 0, 0],
+	[1, 0, 0, 1, 0, 0, 0, 0],
+	[0, 1, 1, 0, 1, 1, 1, 0],
+	[0, 0, 0, 1, 0, 1, 0, 0],
+	[0, 0, 0, 1, 1, 0, 0, 0],
+	[0, 0, 0, 1, 0, 0, 0, 1],
+	[0, 0, 0, 0, 0, 0, 1, 0]
+]
 
-    if fibonacci_arr[n] != None:
-        return fibonacci_arr[n]
-    else:
-        fibonacci_arr[n] = fibonacci(n - 1) + fibonacci(n - 2)
-        return fibonacci_arr[n]
+def bfs(g, i, visited):
+    queue = deque([i])
+    visited[i] = True
+    while queue:
+        i = queue.popleft() #O(1)
+        print(chr(ord('A')+i), end=' ')
+        for j in range(len(g)):
+            if g[i][j] == 1 and not visited[j]:
+                queue.append(j)
+                visited[j] = 1
 
-count = 0
-fibonacci_arr = [0,1] + [None for _ in range(100)]
 
-n = int(input("계산할 피보나치 수열의 index : "))
-fibonacci(n)
-print(fibonacci_arr)
-print(count)
+def dfs(g, v, visited):
+	visited[v] = True
+	print(v, end= ' ')
+	for i in range(len(graph)):
+		if graph[v][i] == 1 and not visited[i]:
+			dfs(g, i, visited)
+	return
 
+visited = [0] * len(graph)
+bfs(graph, 0, visited)
